@@ -6,6 +6,7 @@ import json
 
 Lock = threading.Lock()
 
+##获取哔哩哔哩信息的类
 class FetchBilibili(object):
 
     __instance = None
