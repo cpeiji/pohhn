@@ -1,13 +1,15 @@
 import datetime
 import threading
-from FetchBilibili import FetchBilibili
+from app.main.task.FetchBilibili import FetchBilibili
 
 
 
 Lock = threading.Lock()
+
 class FetchTask(object):
     __instance = None
-    bilibili = fb()
+
+    bilibili = FetchBilibili()
 
     def __init__(self):
         pass
@@ -24,7 +26,7 @@ class FetchTask(object):
         return cls.__instance
 
     def fetch_all(self):
-        bilibili = FetchBilibili()
+        self.bilibili.fetch_all_video_list_json() #bilibili定时信息抓取
 
 
 

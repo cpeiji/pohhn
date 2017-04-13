@@ -3,6 +3,9 @@ from app.main.utils.RequestUtil import RequestUtil
 from app.main.utils.TimeUtil import TimeUtil
 from app.main.enums.ParamTypeEnum import ParamTypeEnum
 from app.main.dao.FetchParamDAO import FetchParamDAO
+from app.main.dao.FetchRecordDAO import FetchRecordDAO
+from app.main.entity.FetchRecordDO import FetchRecordDO
+
 import threading
 import json
 
@@ -14,6 +17,10 @@ class FetchBilibili(object):
     __instance = None
 
     fpd = FetchParamDAO()
+
+    frd = FetchRecordDAO()
+
+    gen_link = "http://www.bilibili.com/video/av"
 
     def __init__(self):
         pass
@@ -38,14 +45,22 @@ class FetchBilibili(object):
             headers = param.headers
             f_json = RequestUtil.create_json_requ(url,payload,headers)#fetch到的主播视频列表对象
             v_list = f_json['data']['vlist']
-
+            list = []
             for video in v_list:
-                print(video['aid'],video['title'],video['pic'], TimeUtil.stamp_to_date(video['created']))
+                fr = FetchRecordDO()
+                fr.mid = video['aid']
+                fr.name = video['title']
+                fr.desc = video['description']
+                fr.is_click = 0
+                fr.link = self.gen_link + str(fr.mid);
+                fr.pic = video['pic']
+                fr.gmt_create = TimeUtil.stamp_to_date(video['created'])
+                fr.extra = "时长："+video['length']+" 播放次数："+str(video['play'])+" 评论次数："+str(video['comment'])
+                fr.type = ParamTypeEnum.bilibili.value
+                list.append(fr)
+            self.frd.insert_list(list)
 
 
-
-
-FetchBilibili().fetch_all_video_list_json()
 
 
 
