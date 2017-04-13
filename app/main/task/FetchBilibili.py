@@ -5,7 +5,6 @@ from app.main.enums.ParamTypeEnum import ParamTypeEnum
 from app.main.dao.FetchParamDAO import FetchParamDAO
 from app.main.dao.FetchRecordDAO import FetchRecordDAO
 from app.main.entity.FetchRecordDO import FetchRecordDO
-
 import threading
 import json
 

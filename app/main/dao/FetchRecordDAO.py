@@ -10,7 +10,7 @@ class FetchRecordDAO(object):
 
     table_name = "rss_fetch_record"
 
-    db_path ="../../../rss.sqlite"
+    db_path ="../rss.sqlite"
 
     def __init__(self):
         pass

@@ -31,3 +31,8 @@ class FetchTask(object):
 
 
 
+# @TestCode
+
+# f = FetchTask()
+# f.fetch_all()
+

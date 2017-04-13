@@ -2,9 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>【首页】RSS</title>
 </head>
 <body>
-{{name}}
+<ul>
+
+</ul>
+{% for item in bList %}
+<li>
+    <img src="{{item.pic}}" width="10%"/>
+    <p>《{{item.name}}》</p>
+    <p>{{item.extra}}</p>
+    <a href="{{item.link}}" target="_blank">链接</a>
+</li>
+{% endfor %}
 </body>
 </html>
