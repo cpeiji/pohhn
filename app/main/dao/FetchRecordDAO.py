@@ -72,5 +72,7 @@ class FetchRecordDAO(object):
             fr.gmt_create = row[5]
             fr.is_click = row[6]
             fr.pic = row[7]
+            fr.extra = row[8]
+            fr.type = row[9]
             list.append(fr)
         return list

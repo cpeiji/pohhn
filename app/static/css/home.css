@@ -1,0 +1,15 @@
+.title_bar{
+    background-color: #FFE4E1;
+    hight:20px;
+    box-shadow: 2px 3px 2px #EAEAEA;
+}
+.views{
+    float:left;
+    margin-top: 10px;
+}
+.views img{
+    width: 100%;
+}
+.view a{
+    font-size: 20px;
+}
