@@ -10,8 +10,9 @@ app = Flask(__name__)
 def index():
     f = FetchRecordService()
     b_List = f.query_new_record(ParamTypeEnum.bilibili.value)
+    dytt_List = f.query_new_record(ParamTypeEnum.dytt.value)
 
-    return render_template('record/index.html', bList=b_List)
+    return render_template('record/index.html', bList=b_List,dyttList=dytt_List)
 
 if __name__ == '__main__':
     app.run()

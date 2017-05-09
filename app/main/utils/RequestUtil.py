@@ -11,9 +11,10 @@ class RequestUtil:
             return ""
 
     @staticmethod
-    def create_html_requ(url, payload, header):
+    def create_html_requ(url, payload, header,encode):
         try:
-            html = requests.get(url+"?"+payload, headers=header)
+            html = requests.get(url,params=payload, headers=header)
+            html.encoding = encode
             return html.text
         except Exception as e:
             return ""
