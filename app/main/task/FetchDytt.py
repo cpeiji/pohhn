@@ -47,11 +47,13 @@ class FetchDytt(object):
             f_html = RequestUtil.create_html_requ(url,payload,headers,'gbk')#fetch到的主播视频列表对象
             soup = BeautifulSoup(f_html,"html.parser")
             list = soup.find_all("div", class_="co_content8")[0].find_all(href=re.compile("20"));
+            db_list = []
             for item in list:
                 soup = BeautifulSoup(str(item),"html.parser")
                 movie_name = soup.find_all("a")[0].string
                 link = self.gen_link+soup.find_all("a")[0].get('href')
-                self.fetch_movie_detail(link,payload,headers,movie_name,link)
+                db_list.append(self.fetch_movie_detail(link,payload,headers,movie_name,link))
+            self.frd.insert_list(db_list)
 
     def fetch_movie_detail(self,url,payload,headers,movie_name,link):
         d_html = RequestUtil.create_html_requ(url, payload, headers, 'gbk')  # fetch到的主播视频列表对象
@@ -61,6 +63,7 @@ class FetchDytt(object):
         screen_shot = content.find_all("img")[1].get('src') #截图
         download_link = content.find_all("a")[0].get('href') #下载链接
         create_time = content.find_all(text=re.compile("发布时间"))[0].strip().replace("\n", "").split("：")[1]#发布时间
+        mid = link.split('/')[7].split('.')[0] ##唯一的项目标志符号
         imdb_score = ""
         douban_score = ""
         try:
@@ -75,6 +78,12 @@ class FetchDytt(object):
         fetchDO.name = "【"+create_time+"】"+movie_name
         fetchDO.desc = imdb_score+"  "+douban_score
         fetchDO.extra = "下载链接："+download_link
+        fetchDO.gmt_create = create_time
+        fetchDO.mid = mid
+        fetchDO.link = link
+        fetchDO.pic = post+"#*#"+screen_shot
+        fetchDO.type = ParamTypeEnum.dytt.value
+        return fetchDO
 
 f = FetchDytt()
 f.fetch_new_movie_list()

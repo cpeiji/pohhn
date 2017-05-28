@@ -31,7 +31,7 @@ class FetchRecordService():
 
     def query_new_record(self,type):
         try:
-            days_yet = TimeUtil.get_date_yet(5)
+            days_yet = TimeUtil.get_date_yet(7)#一个礼拜内的数据
             sql = "select * from rss_fetch_record where gmt_create >'"+days_yet+"' and type = "+str(type)+" order by gmt_create DESC "
             list = self.frd.query_by_sql(sql)
             return list

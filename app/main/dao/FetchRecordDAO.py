@@ -1,6 +1,8 @@
 from app.main.utils.SqlUtil import SqlUtil
 from app.main.entity.FetchRecordDO import FetchRecordDO
 import threading
+import os
+from app.main.enums.DbPathEnum import DbPathEnum
 import sqlite3 as sqlite
 
 
@@ -10,7 +12,7 @@ class FetchRecordDAO(object):
 
     table_name = "rss_fetch_record"
 
-    db_path ="../rss.sqlite"
+    db_path = DbPathEnum.db_path.value
 
     def __init__(self):
         pass
@@ -69,10 +71,10 @@ class FetchRecordDAO(object):
             fr.name = row[2]
             fr.desc = row[3]
             fr.link = row[4]
-            fr.gmt_create = row[5]
-            fr.is_click = row[6]
-            fr.pic = row[7]
-            fr.extra = row[8]
-            fr.type = row[9]
+            fr.is_click = row[5]
+            fr.pic = row[6]
+            fr.extra = row[7]
+            fr.type = row[8]
+            fr.gmt_create = row[9]
             list.append(fr)
         return list

@@ -2,6 +2,7 @@ from app.main.utils.SqlUtil import SqlUtil
 from app.main.entity.FetchParamDO import FetchParamDO
 import threading
 import sqlite3 as sqlite
+from app.main.enums.DbPathEnum import DbPathEnum
 
 
 Lock = threading.Lock()
@@ -10,7 +11,7 @@ class FetchParamDAO():
 
     table_name = "rss_fetch_param"
 
-    db_path ="../../../rss.sqlite"
+    db_path = DbPathEnum.db_path.value
 
     def __init__(self):
         pass

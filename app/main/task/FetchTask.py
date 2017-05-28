@@ -1,6 +1,7 @@
 import datetime
 import threading
 from app.main.task.FetchBilibili import FetchBilibili
+from app.main.task.FetchDytt import FetchDytt
 
 
 
@@ -10,6 +11,7 @@ class FetchTask(object):
     __instance = None
 
     bilibili = FetchBilibili()
+    dytt = FetchDytt()
 
     def __init__(self):
         pass
@@ -27,12 +29,11 @@ class FetchTask(object):
 
     def fetch_all(self):
         self.bilibili.fetch_all_video_list_json() #bilibili定时信息抓取
+        self.dytt.fetch_new_movie_list()#抓取dytt的数据
+        return True;
 
 
 
 
-# @TestCode
 
-# f = FetchTask()
-# f.fetch_all()
 
