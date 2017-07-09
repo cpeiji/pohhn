@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>【首页】RSS</title>
+    <link rel="stylesheet" href="/static/mdl/material.min.css">
+    <link rel="stylesheet" href="/static/mdl/icon.css">
+    <script type='text/javascript' src='/static/js/jquery-2.2.3.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='/static/js/bootstrap.min.js' charset='utf-8'></script>
+    <script src="/static/mdl/material.min.js"></script>
+    <script src="/static/js/vue.min.js"></script>
+    <script src="/static/js/ajax/ajaxUtil.js"></script>
+</head>
+<style>
+    .page-content{
+        width: auto;
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+</style>
+<body style="background-color:#f8f8f8">
+<!-- Simple header with scrollable tabs. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">我的日更 | <small>下班回家了，看个视频轻松一下吧 (゜-゜)つロ </small></span>
+        </div>
+        <!-- Tabs -->
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+            <a href="#scroll-tab-1" class="mdl-layout__tab is-active">bilibili</a>
+            <a href="#scroll-tab-2" class="mdl-layout__tab">影视圈</a>
+            <a href="#scroll-tab-3" class="mdl-layout__tab">汽车圈</a>
+            <a href="#scroll-tab-4" class="mdl-layout__tab">科技圈</a>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Title</span>
+    </div>
+    <main class="mdl-layout__content">
+        <section class="mdl-layout__tab-panel is-active" id="scroll-tab-1">
+            <div class="page-content" id="bilibili" v-html="content">
+                {{ content }}
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-2">
+            <div class="page-content" id="movie" v-html="content">
+                {{ content }}
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-3">
+            <div class="page-content" id="car" v-html="content">
+                {{ content }}
+            </div>
+        </section>
+        <section class="mdl-layout__tab-panel" id="scroll-tab-4">
+            <div class="page-content" id="tech" v-html="data">
+                {{ data }}
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+<script src="/static/js/modual/bilibili.js"></script>
+<script src="/static/js/modual/movie.js"></script>
+<script src="/static/js/modual/car.js"></script>
+<script src="/static/js/modual/tech.js"></script>
+</html>

@@ -38,7 +38,7 @@ class FetchDytt(object):
         return cls.__instance
 
     def fetch_new_movie_list(self):
-        sql = "select * from rss_fetch_param where type = "+str(ParamTypeEnum.dytt.value)
+        sql = "select * from rss_fetch_param where type = "+str(ParamTypeEnum.movie.value)
         param_list = self.fpd.query_by_sql(sql)
         for param in param_list:
             url = param.link
@@ -82,11 +82,9 @@ class FetchDytt(object):
         fetchDO.mid = mid
         fetchDO.link = link
         fetchDO.pic = post+"#*#"+screen_shot
-        fetchDO.type = ParamTypeEnum.dytt.value
+        fetchDO.type = ParamTypeEnum.movie.value
         return fetchDO
 
-f = FetchDytt()
-f.fetch_new_movie_list()
 
 
 
